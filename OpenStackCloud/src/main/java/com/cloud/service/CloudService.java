@@ -1,6 +1,7 @@
 package com.cloud.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.openstack4j.api.OSClient.OSClientV3;
@@ -10,6 +11,7 @@ import org.openstack4j.model.compute.Server;
 import org.openstack4j.model.compute.SimpleTenantUsage;
 import org.openstack4j.openstack.OSFactory;
 import com.cloud.model.CloudModel;
+import com.cloud.model.Diagnostic;
 
 public class CloudService {
 
@@ -27,6 +29,7 @@ public class CloudService {
 	        			.credentials(model.getUser().getUserName(),model.getUser().getPassword(),Identifier.byName("default"))
 	        			.scopeToProject(Identifier.byId(demoProjectId))
 	        			.authenticate();
+	        	model.setAuthenticationToken(os.getToken().getId());
 	        	model.setAuthenticated(true);
 	        	return model;
 	        }catch (Exception e) {
@@ -81,6 +84,19 @@ public class CloudService {
 			String ramUsage=tenantUsageObj.getTotalMemoryMbUsage().toString();
 			String cpuUsage=tenantUsageObj.getTotalVcpusUsage().toString();
 			String diskUsage=tenantUsageObj.getTotalLocalGbUsage().toString();
+			HashMap<String, Integer> ram=new HashMap<>();
+			HashMap<String, Integer> cpu=new HashMap<>();
+			HashMap<String, Integer> disk=new HashMap<>();
+			ram.put("ramUsage", Integer.parseInt(ramUsage));
+			cpu.put("cpuUsage", Integer.parseInt(cpuUsage));
+			disk.put("diskUsage", Integer.parseInt(diskUsage));
+			
+			Diagnostic dia=new Diagnostic();
+			dia.setCpuUsage(cpu);
+			dia.setDiskUsage(disk);
+			dia.setRamUsage(ram);
+			model.setDiagnostic(dia);
+			
 			//code to be written for calculating percentage of resource usage
 			return model;
 		}catch (Exception e) {
@@ -105,6 +121,21 @@ public class CloudService {
 			}
 			throw e;
 		}
+		
+	}
+	public CloudModel getCloudModel() {
+		CloudModel model=new CloudModel();
+		List<String> list=new ArrayList<>();
+		list.add("11111111");
+		list.add("22222");
+		model.setServerIds(list);
+		HashMap<String, Integer> ram=new HashMap<>();
+		ram.put("used", 12);
+		ram.put("remain", 15);
+		Diagnostic dia=new Diagnostic();
+		dia.setRamUsage(ram);
+		model.setDiagnostic(dia);
+		return model;
 		
 	}
 
