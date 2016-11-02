@@ -1,0 +1,6 @@
+com\cloud\controller\CloudController.class
+com\cloud\model\CloudModel.class
+com\cloud\service\CloudService.class
+com\cloud\model\Server.class
+com\cloud\model\Diagnostic.class
+com\cloud\model\UserObject.class
