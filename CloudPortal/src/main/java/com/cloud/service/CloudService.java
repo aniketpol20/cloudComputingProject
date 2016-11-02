@@ -1,6 +1,7 @@
 package com.cloud.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.openstack4j.api.OSClient.OSClientV3;
@@ -11,6 +12,7 @@ import org.openstack4j.model.compute.SimpleTenantUsage;
 import org.openstack4j.openstack.OSFactory;
 
 import com.cloud.model.CloudModel;
+import com.cloud.model.Diagnostic;
 
 
 
@@ -74,9 +76,9 @@ public class CloudService {
 	private OSClientV3 generateAuthenticationToken(CloudModel model) {
 		
 			OSClientV3 os = OSFactory.builderV3()
-    			.endpoint("http://192.168.1.6/identity/v3")
+    			.endpoint(keyStoneEndPoint)
     			.credentials(model.getUser().getUserName(),model.getUser().getPassword(),Identifier.byName("default"))
-    			.scopeToProject(Identifier.byId("6e43817c72bf48c28d2d8bef67382e10"))
+    			.scopeToProject(Identifier.byId(adminprojectId))
     			.authenticate();
 			return os;
 		
@@ -93,15 +95,30 @@ public class CloudService {
 	 */
 	public CloudModel getResourceDetails(String tenantId, CloudModel model) {
 		OSClientV3 os=generateAuthenticationToken(model);
-		
+		int totalAvailable=512;
+		int totapVCPS=8;
+		int totalDisk=40;
 		List<Server> serverList=(List<Server>) os.compute().servers().list();
 
 		for(Server serverObject:serverList){
 			if(serverObject.getTenantId().equals(tenantId)){
 				SimpleTenantUsage usage=os.compute().quotaSets().getTenantUsage(serverObject.getTenantId());
-				model.setTotalMemoryUsage(usage.getTotalMemoryMbUsage());
-				model.setTotalVcpuUsage(usage.getTotalVcpusUsage());
-				model.setTotalLocalGbUsage(usage.getTotalLocalGbUsage());
+				
+				Diagnostic diag=new Diagnostic();
+				HashMap<String, Integer> ramusage=new HashMap<>();
+				HashMap<String, Integer> vcpusused=new HashMap<>();
+				HashMap<String, Integer>  diskusage=new HashMap<>();
+				ramusage.put("used",Integer.parseInt(usage.getTotalMemoryMbUsage().toString()));
+				ramusage.put("remain",totalAvailable-Integer.parseInt(usage.getTotalMemoryMbUsage().toString()));
+				vcpusused.put("used",Integer.parseInt(usage.getTotalVcpusUsage().toString()));
+				vcpusused.put("remain",totapVCPS-Integer.parseInt(usage.getTotalMemoryMbUsage().toString()));
+				diskusage.put("used",Integer.parseInt(usage.getTotalLocalGbUsage().toString()));
+				diskusage.put("remain",totalDisk-Integer.parseInt(usage.getTotalMemoryMbUsage().toString()));
+				diag.setRamUsage(ramusage);
+				diag.setCpuUsage(vcpusused);
+				diag.setDiskUsage(diskusage);
+				
+				model.setDiagnostic(diag);
 				break;
 			}
 		}
@@ -140,9 +157,9 @@ public class CloudService {
 		// TODO Auto-generated method stub
 		try{
 		OSClientV3 os = OSFactory.builderV3()
-		.endpoint("http://192.168.1.6/identity/v3")
+		.endpoint(keyStoneEndPoint)
 		.credentials(userName,password,Identifier.byName("default"))
-		.scopeToProject(Identifier.byId("6e43817c72bf48c28d2d8bef67382e10"))
+		.scopeToProject(Identifier.byId(adminprojectId))
 		.authenticate();
 		return true;
 		}
