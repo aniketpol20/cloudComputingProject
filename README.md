@@ -72,6 +72,7 @@ All files are new files<br>
 
 <br>
 <b>Client Files:</b><br>
+
 [1] index.jsp : This file contains the login page for dasgboard.
 
 [2] ListVMs.jsp : This file contains code to fetch list of the VMs present in the deployed dev stack environment.
