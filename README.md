@@ -40,8 +40,7 @@ Software Requirements:
 
 
 
-
-<b>Installation Guide:<b/>
+Installation Guide:
 
 
 
