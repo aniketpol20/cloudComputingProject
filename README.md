@@ -53,3 +53,28 @@ Installation Guide:
 [4] Deploy war on apache tomcat server<br>
 
 [5] Access cloud portal through http://localhost:8080/cloudPortal <br>
+
+
+
+File Description:
+
+All Files are new Files
+[1]CloudController.java
+This file contains all REST APIS that are exposed to the clent such as authentication ,fetching resource usage information
+
+[2] CloudService.java
+This file contains all APIs of Openstack4j that are used to comminicate with keystone and compute component of openstack.
+
+[3] CloudMode.java
+This is a POJO class which represents model containing all necessary information which client needs such as UserObject.java containing username and password ,authenticationToken etc
+
+//add jsp files dexription
+
+
+
+
+
+
+
+
+
