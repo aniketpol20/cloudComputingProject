@@ -1,36 +1,5 @@
 
-   function hardcoding(){  
-      Memory = [
-          ['CPU Usage', 'Memory in GBs '],
-          ['used',     10],
-          ['Unused', 90]
-        ];
-       CPU = [
-                    ['CPU Usage', 'Memory in GBs '],
-                    ['used',     30],
-                    ['Unused', 70]
-                  ];
-       Resources = [
-                    ['CPU Usage', 'Memory in GBs '],
-                    ['used',     20],
-                    ['Unused', 80]
-                  ];
-
-         options = {
-          title: 'CPU Usage',
-          is3D: true,
-        };
-         options1 = {
-                title: 'Memory Usage',
-                is3D: true,
-              };
-         options2 = {
-                title: 'Resource Utilization',
-                is3D: true,
-              };
-   }
-   
-   function chartValues(data){
+  function chartValues(data){
 	   var ram=data["ramUsage"];
 	   var cpu=data["cpuUsage"];
 	   var disk=data["diskUsage"];
