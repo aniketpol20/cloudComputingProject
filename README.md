@@ -31,7 +31,7 @@ Software Requirements:
 
 
 
-<b>Hardware Requirements:<b/>
+Hardware Requirements:
 
 
 
