@@ -58,7 +58,7 @@ Project aims to implement a user friendly web-portal which will be used to monit
 
 <b>File Description:</b>
 
-All Files are new Files
+All Files are new Files<br>
 <b>Server Files:</b>
 
 [1]CloudController.java
