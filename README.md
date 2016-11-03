@@ -59,7 +59,7 @@ Project aims to implement a user friendly web-portal which will be used to monit
 <b>File Description:</b>
 
 All Files are new Files
-Server Files:
+<b>Server Files:</b>
 
 [1]CloudController.java
 This file contains all REST APIS that are exposed to the clent such as authentication ,fetching resource usage information
@@ -70,9 +70,11 @@ This file contains all APIs of Openstack4j that are used to comminicate with key
 [3] CloudMode.java
 This is a POJO class which represents model containing all necessary information which client needs such as UserObject.java containing username and password ,authenticationToken etc
 
-Client Files:
-[1] index.jsp : This file contains the login page for dasgboard
+<b>Client Files:</b>
+[1] index.jsp : This file contains the login page for dasgboard.
+
 [2] ListVMs.jsp : This file contains code to fetch list of the VMs present in the deployed dev stack environment.
+
 [3] Pie.jsp : This file shows resource usages such as RAM usage,VCPUS used and disk usages of the selected VM in form of pie charts. 
 
 
