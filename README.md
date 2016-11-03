@@ -70,7 +70,7 @@ This file contains all APIs of Openstack4j that are used to comminicate with key
 [3] CloudMode.java
 This is a POJO class which represents model containing all necessary information which client needs such as UserObject.java containing username and password ,authenticationToken etc
 
-<b>Client Files:</b>
+<b>Client Files:</b><br>
 [1] index.jsp : This file contains the login page for dasgboard.
 
 [2] ListVMs.jsp : This file contains code to fetch list of the VMs present in the deployed dev stack environment.
