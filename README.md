@@ -68,6 +68,8 @@ All files are new files<br>
 [2] CloudService.java : This file contains all APIs of Openstack4j that are used to comminicate with keystone and compute component of openstack.
 
 [3] CloudMode.java : This is a POJO class which represents model containing all necessary information which client needs such as UserObject.java containing username and password ,authenticationToken etc
+
+
 <br>
 <b>Client Files:</b><br>
 [1] index.jsp : This file contains the login page for dasgboard.
