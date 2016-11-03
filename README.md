@@ -17,7 +17,7 @@ Project aims to implement a user friendly web-portal which will be used to monit
 
 
 
-Software Requirements:
+<b>Software Requirements:</b>
 
 
 
@@ -31,7 +31,7 @@ Software Requirements:
 
 
 
-Hardware Requirements:
+<b>Hardware Requirements:</b>
 
 
 
@@ -40,7 +40,7 @@ Hardware Requirements:
 
 
 
-Installation Guide:
+<b>Installation Guide:</b>
 
 
 
@@ -56,7 +56,7 @@ Installation Guide:
 
 
 
-File Description:
+<b>File Description:</b>
 
 All Files are new Files
 [1]CloudController.java
